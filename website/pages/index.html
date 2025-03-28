@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <title>Index Page</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  
+  #title{
+  font-size: 40px;
+  font-style: italic;
+  position: relative;
+  justify-content: center;
+  display: flex;
+  margin-top: 8px;
+  }
+
+</style>
 </head>
 
 <body>
-  <h1>The main page of the website</h1>
+
+  <div id="title">mission accomplished</div>
+
+  <button class="login-btn" id="loginbutton">Login</button>
+  <button class="signup-btn" id="signupbutton">Signup</button>
+
+  <div class="popup-overlay" id="loginPopup" onclick="closePopup(event, 'loginPopup')">
+    <div class="popup-box" onclick="event.stopPropagation()">
+      <h2>Login</h2>
+      <input type="text" placeholder="Username" id="username">
+      <input type="password" placeholder="Password" id="password">
+      <button id="submitlogin">Submit</button>
+    </div>
+  </div>
+
+  <div class="popup-overlay" id="signupPopup" onclick="closePopup(event, 'signupPopup')">
+    <div class="popup-box" onclick="event.stopPropagation()">
+      <h2>Signup</h2>
+      <input type="text" placeholder="Username" id="signup-username">
+      <input type="password" placeholder="Password" id="signup-password">
+      <input type="password" placeholder="Confirm Password" id="signup-confirm-password">
+      <button id="submitsignup">Submit</button>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
 </body>
 
 </html>
