@@ -2,26 +2,14 @@
 <html>
 <head>
 <link rel="stylesheet" href="style.css">
-<style>
-  
-  #title{
-  font-size: 40px;
-  font-style: italic;
-  position: relative;
-  justify-content: center;
-  display: flex;
-  margin-top: 8px;
-  }
-
-</style>
 </head>
 
 <body>
 
   <div id="title">mission accomplished</div>
 
-  <button class="login-btn" id="loginbutton">Login</button>
-  <button class="signup-btn" id="signupbutton">Signup</button>
+  <button id="loginbutton">Login</button>
+  <button id="signupbutton">Signup</button>
 
   <div class="popup-overlay" id="loginPopup" onclick="closePopup(event, 'loginPopup')">
     <div class="popup-box" onclick="event.stopPropagation()">
@@ -41,6 +29,15 @@
       <button id="submitsignup">Submit</button>
     </div>
   </div>
+  <div id="q1">have an account?</div>
+  <div id="q2">don't have an acoount? create one</div>
+  <div id="s1">welcome to my site!</div>
+  <p id="s2">this site lets you orgenize your tasks, it can be daily tasks that you do through your day 
+    or it can be a big event that you got coming up.<br> it doesnt matter!
+    all your tasks can be efficiently
+    orgeniezed inside a journal that you can access to from every device. </p>
+
+
 
   <script src="index.js"></script>
 </body>
