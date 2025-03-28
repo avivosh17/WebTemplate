@@ -144,7 +144,7 @@ public class Request
     int count = 1;
     foreach (var item in arrayJsonObj)
     {
-      tuplisedObj[$"Item{count}"] = item!.DeepClone();
+      tuplisedObj[$"Item{count}"] = item?.DeepClone();
       count++;
     }
 
