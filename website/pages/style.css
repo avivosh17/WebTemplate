@@ -2,53 +2,58 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#title{
+#title {
     font-size: 50px;
     font-style: italic;
     position: relative;
     justify-content: center;
     display: flex;
     margin-top: 8px;
-    background-color: blanchedalmond;
+    background-color: gold;
     height: 80px;
-    }
-    #s1{
-        display: flex;
-        position: relative;
-        justify-content: center;
-        bottom: 20px;
-        font-size: 35px;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;    }
-    #s2{
-        display: flex;
-        position: relative;
-        justify-content: center;
-        top: 20px;
-        font-size: 25px;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    }
+}
 
-#q1{
+#s1 {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    bottom: 20px;
+    font-size: 35px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#s2 {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    top: 20px;
+    font-size: 25px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#q1 {
     display: flex;
     position: relative;
     left: 470px;
     top: 350px;
-    background-color: blanchedalmond;
+    background-color: gold;
     width: 125px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 }
-#q2{
+
+#q2 {
     display: flex;
     position: relative;
     left: 910px;
     top: 330px;
-    background-color: blanchedalmond;
+    background-color: gold;
     width: 250px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 }
-#loginbutton{
+
+#loginbutton {
     position: relative;
     display: flex;
     left: 500px;
@@ -57,6 +62,7 @@ body {
     font-size: 18px;
     top: 450px;
 }
+
 #signupbutton {
     height: 30px;
     font-size: 18px;
