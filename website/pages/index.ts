@@ -1,7 +1,15 @@
+import { send } from "../utilities";
+
 let submitlogin = document.getElementById("submitlogin") as HTMLButtonElement;
 let submitsignup = document.getElementById("submitsignup") as HTMLButtonElement;
 let signupbutton = document.getElementById("signupbutton") as HTMLButtonElement;
 let loginbutton = document.getElementById("loginbutton") as HTMLButtonElement;
+let signupconfirmpassword = document.getElementById("signupconfirmpassword") as HTMLInputElement;
+let signuppassword = document.getElementById("signuppassword") as HTMLInputElement;
+let signupusername = document.getElementById("signupusername") as HTMLInputElement;
+let loginusername = document.getElementById("loginusername") as HTMLInputElement;
+let loginpassword = document.getElementById("loginpassword") as HTMLInputElement;
+
 
 loginbutton.onclick = function () {
     const popup = document.getElementById("loginPopup");
@@ -52,3 +60,55 @@ function closePopup(event: MouseEvent, popupId: string): void {
 }
 
 (window as any).closePopup = closePopup;
+
+window.onclick = function (event: MouseEvent) {
+    const loginPopup = document.getElementById("loginPopup");
+    const signupPopup = document.getElementById("signupPopup");
+
+    if (loginPopup && event.target === loginPopup) {
+        closePopup(event, "loginPopup");
+    }
+    if (signupPopup && event.target === signupPopup) {
+        closePopup(event, "signupPopup");
+    }
+};
+
+submitsignup.onclick = async function () {
+    if (signupconfirmpassword.value != signuppassword.value) {
+        alert("Passwords do not match");
+        return;
+    }
+
+    let userId = await send("signUp", [
+        signupusername.value,
+        signuppassword.value,
+    ]) as string | null;
+
+    if (userId == null) {
+        alert("Username already exists");
+        return;
+    }
+
+    localStorage.setItem("userId", userId);
+
+
+    location.href = "loahshana.html";
+};
+
+submitlogin.onclick = async function () {
+    let userId = await send("logIn", [
+        loginusername.value,
+        loginpassword.value,
+    ]) as string | null;
+
+    if (userId == null) {
+        alert("Incorrect username or password");
+        return;
+    }
+
+    localStorage.setItem("userId", userId);
+
+    location.href = "loahshana.html";
+};
+
+

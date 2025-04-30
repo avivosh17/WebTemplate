@@ -36,9 +36,41 @@ class Program
       {
         try
         {
-          /*──────────────────────────────────╮
-          │ Handle your custome requests here │
-          ╰──────────────────────────────────*/
+          if (request.Path == "verifyUserId")
+          {
+            var userId = request.GetBody<string>();
+
+            var exists = database.Users.Any(user => user.Id == userId);
+
+            response.Send(exists);
+          }
+          else if (request.Path == "signUp")
+          {
+            var (username, password) = request.GetBody<(string, string)>();
+
+            var exists = database.Users.Any(user => user.Username == username);
+
+            string? userId = null;
+
+            if (!exists)
+            {
+              userId = Guid.NewGuid().ToString();
+              var user = new User(userId, username, password);
+              database.Users.Add(user);
+            }
+
+            response.Send(userId);
+          }
+          else if (request.Path == "logIn")
+          {
+            var (username, password) = request.GetBody<(string, string)>();
+
+            var user = database.Users
+              .FirstOrDefault(user => user.Username == username && user.Password == password);
+
+            response.Send(user?.Id);
+          }
+
           response.SetStatusCode(405);
 
           database.SaveChanges();
@@ -57,9 +89,8 @@ class Program
 
 class Database() : DbBase("database")
 {
-  /*──────────────────────────────╮
-  │ Add your database tables here │
-  ╰──────────────────────────────*/
+  public DbSet<User> Users { get; set; } = default!;
+
 }
 
 class User(string id, string username, string password)
@@ -67,7 +98,4 @@ class User(string id, string username, string password)
   [Key] public string Id { get; set; } = id;
   public string Username { get; set; } = username;
   public string Password { get; set; } = password;
-} 
-
-
-
+}
