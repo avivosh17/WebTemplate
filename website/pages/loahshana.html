@@ -1,11 +1,137 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <title>"Your" Calendar</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 90%;
+            table-layout: fixed;
+        }
+
+        th {
+            border: 2px solid black;
+            padding: 20px;
+            height: 30px;
+            vertical-align: top;
+        }
+
+        td {
+            border: 2px solid black;
+            padding: 20px;
+            height: 450px;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        #textarea1 {
+            position: relative;
+            height: 485px;
+            top: -492px;
+            left: 95px;
+        }
+
+        #textarea2 {
+            position: relative;
+            height: 485px;
+            top: -492px;
+            left: 92px;
+        }
+
+        #textarea3 {
+            position: relative;
+            height: 485px;
+            top: -492px;
+            left: 88px;
+        }
+
+        #textarea4 {
+            position: relative;
+            height: 485px;
+            top: -492px;
+            left: 84px;
+        }
+
+        #textarea5 {
+            position: relative;
+            height: 485px;
+            top: -492px;
+            left: 81px;
+        }
+
+        #textarea6 {
+            position: relative;
+            height: 485px;
+            top: -492px;
+            left: 78px;
+        }
+
+        #textarea7 {
+            position: relative;
+            height: 485px;
+            top: -492px;
+            left: 74px;
+        }
+        #savebutton{
+            position: relative;
+            height: 70px;
+            width: 100px;
+            font-size: 30px;
+        }
+    </style>
 </head>
 
 <body>
-    
+    <h1>"Your" Calendar</h1>
+    <button id="savebutton">save</button>
+
+    <table>
+        <tr>
+            <th>week num</th>
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saterday</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <textarea id="textarea1"></textarea>
+    <textarea id="textarea2"></textarea>
+    <textarea id="textarea3"></textarea>
+    <textarea id="textarea4"></textarea>
+    <textarea id="textarea5"></textarea>
+    <textarea id="textarea6"></textarea>
+    <textarea id="textarea7"></textarea>
+
+
 </body>
 
 </html>
