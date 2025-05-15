@@ -70,39 +70,6 @@ class Program
 
             response.Send(user?.Id);
           }
-          else if (request.Path == "saveWeekData")
-          {
-            var data = request.GetBody<CalendarEntry>();
-            var existing = database.CalendarEntries.FirstOrDefault(entry =>
-              entry.UserId == data.UserId && entry.WeekNumber == data.WeekNumber);
-
-            if (existing == null)
-            {
-              database.CalendarEntries.Add(data);
-            }
-            else
-            {
-              existing.Sunday = data.Sunday;
-              existing.Monday = data.Monday;
-              existing.Tuesday = data.Tuesday;
-              existing.Wednesday = data.Wednesday;
-              existing.Thursday = data.Thursday;
-              existing.Friday = data.Friday;
-              existing.Saturday = data.Saturday;
-            }
-
-            response.Send("ok");
-          }
-          else if (request.Path == "getWeekData")
-          {
-            var (userId, weekNumber) = request.GetBody<(string, int)>();
-            var entry = database.CalendarEntries.FirstOrDefault(e =>
-              e.UserId == userId && e.WeekNumber == weekNumber);
-
-            response.Send(entry);
-          }
-
-
           response.SetStatusCode(405);
 
           database.SaveChanges();
