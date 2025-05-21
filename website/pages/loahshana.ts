@@ -41,3 +41,4 @@ function loadWeek(week: number) {
         textareas[i].value = weekData[week][i];
     }
 }
+
