@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 class Program
@@ -9,7 +8,6 @@ class Program
     int port = 5000;
 
     var server = new Server(port);
-
     Console.WriteLine("The server is running");
     Console.WriteLine($"Main Page: http://localhost:{port}/website/pages/index.html");
 
@@ -19,7 +17,7 @@ class Program
     {
       (var request, var response) = server.WaitForRequest();
 
-      Console.WriteLine($"Recieved a request with the path: {request.Path}");
+      Console.WriteLine($"Received a request with the path: {request.Path}");
 
       if (File.Exists(request.Path))
       {
@@ -39,15 +37,12 @@ class Program
           if (request.Path == "verifyUserId")
           {
             var userId = request.GetBody<string>();
-
             var exists = database.Users.Any(user => user.Id == userId);
-
             response.Send(exists);
           }
           else if (request.Path == "signUp")
           {
             var (username, password) = request.GetBody<(string, string)>();
-
             var exists = database.Users.Any(user => user.Username == username);
 
             string? userId = null;
@@ -64,13 +59,30 @@ class Program
           else if (request.Path == "logIn")
           {
             var (username, password) = request.GetBody<(string, string)>();
-
-            var user = database.Users
-              .FirstOrDefault(user => user.Username == username && user.Password == password);
-
+            var user = database.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
             response.Send(user?.Id);
           }
-          response.SetStatusCode(405);
+          else if (request.Path == "saveEntry")
+          {
+            var (userId, weeknum, weekday, text) = request.GetBody<(string, int, int, string)>();
+
+            var existing = database.Entries
+              .FirstOrDefault(e => e.UserId == userId && e.weeknum == weeknum && e.Weekday == weekday);
+
+            if (existing != null)
+              existing.text = text;
+            else
+              database.Entries.Add(new Entry { UserId = userId, weeknum = weeknum, Weekday = weekday, text = text });
+
+            response.Send(true);
+          }
+          else if (request.Path == "loadWeek")
+          {
+            var (userId, weeknum) = request.GetBody<(string, int)>();
+            var entries = database.Entries
+              .Where(e => e.UserId == userId && e.weeknum == weeknum);
+            response.Send(entries);
+          }
 
           database.SaveChanges();
         }
@@ -85,13 +97,11 @@ class Program
   }
 }
 
-
 class Database() : DbBase("database")
 {
   public DbSet<User> Users { get; set; } = default!;
-  public DbSet<CalendarEntry> CalendarEntries { get; set; } = default!;
+  public DbSet<Entry> Entries { get; set; } = default!;
 }
-
 
 class User(string id, string username, string password)
 {
@@ -100,19 +110,11 @@ class User(string id, string username, string password)
   public string Password { get; set; } = password;
 }
 
-class CalendarEntry
+class Entry
 {
   [Key] public int Id { get; set; }
-
   [Required] public string UserId { get; set; } = "";
-  public int WeekNumber { get; set; }
-
-  public string Sunday { get; set; } = "";
-  public string Monday { get; set; } = "";
-  public string Tuesday { get; set; } = "";
-  public string Wednesday { get; set; } = "";
-  public string Thursday { get; set; } = "";
-  public string Friday { get; set; } = "";
-  public string Saturday { get; set; } = "";
+  public int Weekday { get; set; }
+  public int weeknum { get; set; }
+  public string text { get; set; } = "";
 }
-
