@@ -14,6 +14,7 @@ const textareas = [
 let currentUserId = localStorage.getItem("userId")!;
 let currentWeek = 1;
 
+// Setup week selector
 for (let i = 1; i <= 52; i++) {
     const option = document.createElement("option");
     option.value = i.toString();
@@ -48,5 +49,32 @@ function loadWeek(week: number) {
     });
 }
 
-
+// Initial load
 loadWeek(currentWeek);
+
+const estimatedMonth = document.getElementById("estimated-month") as HTMLParagraphElement;
+
+const monthMap = [
+    "January", "February", "March", "April",
+    "May", "June", "July", "August",
+    "September", "October", "November", "December"
+];
+
+function updateEstimatedMonth(week: number) {
+    const monthIndex = Math.floor((week - 1) / 4);
+    estimatedMonth.textContent = `Estimated Month: ${monthMap[monthIndex] ?? "—"}`;
+}
+
+// Call this when the week is changed:
+weekSelect.addEventListener("change", () => {
+    const selectedWeek = parseInt(weekSelect.value);
+    if (!isNaN(selectedWeek)) {
+        updateEstimatedMonth(selectedWeek);
+    }
+});
+
+// Optionally: call it once at page load
+if (!isNaN(parseInt(weekSelect.value))) {
+    updateEstimatedMonth(parseInt(weekSelect.value));
+}
+

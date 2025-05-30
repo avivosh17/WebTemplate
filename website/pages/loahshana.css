@@ -1,0 +1,73 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+      background: linear-gradient(135deg, #fceabb, #f8b500); /* pastel peach to golden */
+    margin: 40px;
+    background-color: #fafafa;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+#weekselect {
+    font-size: 1rem;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 15px;
+    max-width: 95%;
+    margin: 0 auto 40px auto;
+}
+
+.day-label {
+    font-weight: bold;
+    background-color: #f0f0f0;
+    padding: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+textarea {
+    height: 300px;
+    resize: none;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#savebutton {
+    font-size: 1.2rem;
+    padding: 10px 30px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#savebutton:hover {
+    background-color: #45a049;
+}
+
+.estimated-month {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #444;
+}
+

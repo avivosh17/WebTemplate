@@ -64,23 +64,29 @@ class Program
           }
           else if (request.Path == "saveEntry")
           {
-            var (userId, weeknum, weekday, text) = request.GetBody<(string, int, int, string)>();
-
+            var data = request.GetBody<EntryRequest>();
             var existing = database.Entries
-              .FirstOrDefault(e => e.UserId == userId && e.weeknum == weeknum && e.Weekday == weekday);
+              .FirstOrDefault(e => e.UserId == data.userId && e.weeknum == data.weeknum && e.Weekday == data.weekday);
 
             if (existing != null)
-              existing.text = text;
+              existing.text = data.text;
             else
-              database.Entries.Add(new Entry { UserId = userId, weeknum = weeknum, Weekday = weekday, text = text });
+              database.Entries.Add(new Entry {
+                UserId = data.userId,
+                weeknum = data.weeknum,
+                Weekday = data.weekday,
+                text = data.text
+              });
 
             response.Send(true);
           }
           else if (request.Path == "loadWeek")
           {
-            var (userId, weeknum) = request.GetBody<(string, int)>();
+            var data = request.GetBody<WeekRequest>();
             var entries = database.Entries
-              .Where(e => e.UserId == userId && e.weeknum == weeknum);
+              .Where(e => e.UserId == data.userId && e.weeknum == data.weeknum)
+              .ToDictionary(e => e.Weekday, e => e.text);
+
             response.Send(entries);
           }
 
@@ -117,4 +123,18 @@ class Entry
   public int Weekday { get; set; }
   public int weeknum { get; set; }
   public string text { get; set; } = "";
+}
+
+class EntryRequest
+{
+  public string userId { get; set; } = "";
+  public int weeknum { get; set; }
+  public int weekday { get; set; }
+  public string text { get; set; } = "";
+}
+
+class WeekRequest
+{
+  public string userId { get; set; } = "";
+  public int weeknum { get; set; }
 }
