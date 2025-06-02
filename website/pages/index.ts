@@ -112,3 +112,13 @@ submitlogin.onclick = async function () {
 };
 
 
+signupconfirmpassword.addEventListener("keydown", function (event: KeyboardEvent) {
+    if (event.key === "Enter") {
+        submitsignup.click();
+    }
+});
+loginpassword.addEventListener("keydown", function (event: KeyboardEvent) {
+    if (event.key === "Enter") {
+        submitlogin.click();
+    }
+});
