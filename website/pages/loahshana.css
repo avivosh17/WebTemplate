@@ -1,60 +1,81 @@
+/* loahshana.css */
+
 body {
-    font-family: sans-serif;
-    text-align: center;
-      background: linear-gradient(135deg, #fceabb, #f8b500); /* pastel peach to golden */
-    margin: 40px;
-    background-color: #fafafa;
+    margin: 0;
+    padding: 2rem;
+    font-family: 'Segoe UI', sans-serif;
+    background: url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
 }
 
 h1 {
-    font-size: 2em;
-    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 .controls {
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 0.5rem;
 }
 
 #weekselect {
     font-size: 1rem;
-    padding: 5px 10px;
-    margin-left: 10px;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    cursor: pointer;
 }
 
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 15px;
-    max-width: 95%;
-    margin: 0 auto 40px auto;
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .day-label {
+    text-align: center;
     font-weight: bold;
-    background-color: #f0f0f0;
-    padding: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
 }
 
 textarea {
-    height: 300px;
-    resize: none;
-    padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 6px;
+    height: 150px;
+    resize: vertical;
+    padding: 0.75rem;
     font-size: 1rem;
-    box-sizing: border-box;
-    width: 100%;
+    border-radius: 12px;
+    border: none;
+    background: rgba(255, 255, 255, 0.85);
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s;
 }
 
-
+textarea:focus {
+    outline: none;
+    transform: scale(1.02);
+    background: rgba(255, 255, 255, 1);
+}
 
 .estimated-month {
     text-align: center;
-    font-weight: bold;
-    margin-top: 20px;
-    font-size: 1.2em;
-    color: #444;
+    font-size: 1.3rem;
+    margin-top: 2.5rem;
+    color: #f0f0f0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
-

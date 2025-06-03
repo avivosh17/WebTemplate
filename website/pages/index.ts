@@ -120,5 +120,5 @@ signupconfirmpassword.addEventListener("keydown", function (event: KeyboardEvent
 loginpassword.addEventListener("keydown", function (event: KeyboardEvent) {
     if (event.key === "Enter") {
         submitlogin.click();
-    }
+    }
 });
