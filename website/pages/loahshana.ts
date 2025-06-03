@@ -77,4 +77,9 @@ weekSelect.addEventListener("change", () => {
 if (!isNaN(parseInt(weekSelect.value))) {
     updateEstimatedMonth(parseInt(weekSelect.value));
 }
+let logoutbutton = document.getElementById("logoutbutton") as HTMLButtonElement;
+logoutbutton.onclick = async function (): Promise<void> {
+    localStorage.removeItem("userId");
+    location.href = "index.html";
+};
 

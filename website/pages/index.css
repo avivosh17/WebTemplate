@@ -47,7 +47,10 @@ button:hover {
   display: none;
   position: fixed;
   z-index: 10;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: rgba(0, 0, 0, 0.7);
   justify-content: center;
   align-items: center;
@@ -65,8 +68,15 @@ button:hover {
 }
 
 @keyframes popin {
-  from { transform: scale(0.95); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .popup-box h2 {
@@ -93,7 +103,8 @@ button:hover {
 }
 
 /* Descriptive Text */
-#q1, #q2 {
+#q1,
+#q2 {
   font-size: 1rem;
   margin-top: 20px;
   color: #ecf0f1;
