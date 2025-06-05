@@ -14,28 +14,28 @@
       background-position: center;
       background-repeat: no-repeat;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
-      text-align: center;
+      justify-content: center;
     }
 
     h1 {
+      position: absolute;
       font-size: 6rem;
       color: #ff6b6b;
       text-shadow: 2px 2px 4px #000;
-      top: 10px;
+      top: -70px;
     }
 
     div {
+      position: absolute;
       font-size: 1.5rem;
-      margin-top: 20px;
+      bottom: 300px;
       color: #f1f1f1;
       text-shadow: 1px 1px 2px #000;
     }
 
     a {
+      position: absolute;
       display: inline-block;
       bottom: 10px;
       padding: 12px 24px;
@@ -47,8 +47,15 @@
     }
 
     a:hover {
-      background-color: white;
       color: #333;
+    }
+
+    #div2 {
+      position: absolute;
+      font-size: 1.5rem;
+      bottom: 200px;
+      color: #f1f1f1;
+      text-shadow: 1px 1px 2px #000;
     }
   </style>
 </head>
@@ -57,6 +64,7 @@
 
   <h1>Error - 404</h1>
   <div>כנראה נפלת על שנה מעוברת</div>
+  <div id="div2">back to the main page</div>
   <a href="/website/pages/index.html">📖</a>
 
 </body>
