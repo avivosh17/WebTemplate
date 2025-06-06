@@ -1,9 +1,17 @@
 import { send } from "../utilities";
 
+
+if (localStorage.getItem("userId")) {
+    location.href = "loahshana.html";
+}
+
+
 let submitlogin = document.getElementById("submitlogin") as HTMLButtonElement;
 let submitsignup = document.getElementById("submitsignup") as HTMLButtonElement;
 let signupbutton = document.getElementById("signupbutton") as HTMLButtonElement;
 let loginbutton = document.getElementById("loginbutton") as HTMLButtonElement;
+let cancellogin = document.getElementById("cancellogin") as HTMLButtonElement;
+let cancelsignup = document.getElementById("cancelsignup") as HTMLButtonElement;
 let signupconfirmpassword = document.getElementById("signupconfirmpassword") as HTMLInputElement;
 let qmark = document.getElementById("qmark") as HTMLDivElement;
 let closeqbutton = document.getElementById("closeqbutton") as HTMLButtonElement;
@@ -14,6 +22,14 @@ let loginpassword = document.getElementById("loginpassword") as HTMLInputElement
 
 closeqbutton.onclick = () => {
     const popup = document.getElementById("qpopup");
+    if (popup) popup.style.display = "none";
+};
+cancelsignup.onclick = () => {
+    const popup = document.getElementById("signupPopup");
+    if (popup) popup.style.display = "none";
+};
+cancellogin.onclick = () => {
+    const popup = document.getElementById("loginPopup");
     if (popup) popup.style.display = "none";
 };
 
@@ -48,7 +64,9 @@ submitsignup.onclick = async () => {
         return;
     }
 
+    localStorage.setItem("userId", userId);
     location.href = "loahshana.html";
+
 };
 
 submitlogin.onclick = async () => {
@@ -62,8 +80,9 @@ submitlogin.onclick = async () => {
         return;
     }
 
+    localStorage.setItem("userId", loginusername.value);
     location.href = "loahshana.html";
-};
+}
 
 signupconfirmpassword.addEventListener("keydown", (e) => {
     if (e.key === "Enter") submitsignup.click();

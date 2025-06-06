@@ -1,5 +1,18 @@
 import { send } from "../utilities";
 
+
+let currentUserId = localStorage.getItem("userId");
+if (!currentUserId) {
+    location.href = "index.html";
+    throw new Error("Not logged in");
+}
+
+// Set personalized calendar title
+const calendarTitle = document.getElementById("calendarTitle") as HTMLHeadingElement;
+calendarTitle.textContent = `${currentUserId}'s Calendar`;
+
+
+
 const weekSelect = document.getElementById("weekselect") as HTMLSelectElement;
 const textareas = [
     document.getElementById("textarea1"),
@@ -11,7 +24,6 @@ const textareas = [
     document.getElementById("textarea7"),
 ] as HTMLTextAreaElement[];
 
-let currentUserId = localStorage.getItem("userId")!;
 let currentWeek = 1;
 
 // Setup week selector
@@ -73,17 +85,12 @@ weekSelect.addEventListener("change", () => {
     }
 });
 
-// Optionally: call it once at page load
 if (!isNaN(parseInt(weekSelect.value))) {
     updateEstimatedMonth(parseInt(weekSelect.value));
 }
 let logoutbutton = document.getElementById("logoutbutton") as HTMLButtonElement;
-logoutbutton.onclick = async function (): Promise<void> {
+logoutbutton.onclick = () => {
     localStorage.removeItem("userId");
     location.href = "index.html";
 };
 
-async function logOut() {
-    await send("logOut", null);
-    location.href = "index.html";
-}
