@@ -84,7 +84,6 @@ button:hover {
   font-size: 1.5rem;
 }
 
-/* Input Fields */
 .popup-box input {
   display: block;
   width: 100%;
@@ -128,4 +127,38 @@ button:hover {
 #qmark:hover {
   background-color: #007bff;
   color: white;
+}
+
+
+#qmark {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 28px;
+  background: #ffffff;
+  border: 2px solid #007bff;
+  color: #007bff;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 2000;
+  transition: all 0.2s ease;
+}
+
+#qpopup {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
 }

@@ -83,3 +83,7 @@ logoutbutton.onclick = async function (): Promise<void> {
     location.href = "index.html";
 };
 
+async function logOut() {
+    await send("logOut", null);
+    location.href = "index.html";
+}

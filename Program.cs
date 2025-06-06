@@ -56,6 +56,7 @@ class Program
 
             response.Send(userId);
           }
+          
           else if (request.Path == "logIn")
           {
             var (username, password) = request.GetBody<(string, string)>();
@@ -71,7 +72,8 @@ class Program
             if (existing != null)
               existing.text = data.text;
             else
-              database.Entries.Add(new Entry {
+              database.Entries.Add(new Entry
+              {
                 UserId = data.userId,
                 weeknum = data.weeknum,
                 Weekday = data.weekday,
