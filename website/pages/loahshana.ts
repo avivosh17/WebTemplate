@@ -4,12 +4,10 @@ import { send } from "../utilities";
 let currentUserId = localStorage.getItem("userId");
 if (!currentUserId) {
     location.href = "index.html";
-    throw new Error("Not logged in");
 }
 
-// Set personalized calendar title
 const calendarTitle = document.getElementById("calendarTitle") as HTMLHeadingElement;
-calendarTitle.textContent = `${currentUserId}'s Calendar`;
+calendarTitle.innerText = `${currentUserId}'s Calendar`;
 
 
 
