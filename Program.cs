@@ -74,6 +74,26 @@ class Program
             var user = database.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
             response.Send(user?.Id);
           }
+          else if (request.Path == "getmood")
+          {
+            var data = request.GetBody<WeekRequest>();
+            var moodEntry = database.Moods.FirstOrDefault(m => m.UserId == data.userId && m.weeknum == data.weeknum);
+            int mood = moodEntry?.mood ?? 0;
+            response.Send(new { mood });
+          }
+          else if (request.Path == "setmood")
+          {
+            var data = request.GetBody<WeekMood>();
+            var existing = database.Moods.FirstOrDefault(m => m.UserId == data.UserId && m.weeknum == data.weeknum);
+
+            if (existing != null)
+              existing.mood = data.mood;
+            else
+              database.Moods.Add(new WeekMood { UserId = data.UserId, weeknum = data.weeknum, mood = data.mood });
+
+            response.Send(true);
+          }
+
           else if (request.Path == "saveEntry")
           {
             var data = request.GetBody<EntryRequest>();
@@ -120,6 +140,8 @@ class Database() : DbBase("database")
 {
   public DbSet<User> Users { get; set; } = default!;
   public DbSet<Entry> Entries { get; set; } = default!;
+  public DbSet<WeekMood> Moods { get; set; } = default!;
+
 }
 
 class User(string id, string username, string password)
@@ -150,4 +172,11 @@ class WeekRequest
 {
   public string userId { get; set; } = "";
   public int weeknum { get; set; }
+}
+class WeekMood
+{
+  [Key] public int Id { get; set; }
+  [Required] public string UserId { get; set; } = "";
+  public int weeknum { get; set; }
+  public int mood { get; set; }
 }

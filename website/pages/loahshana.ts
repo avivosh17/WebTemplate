@@ -59,7 +59,21 @@ function loadWeek(week: number) {
             ta.value = data[i] || "";
         });
     });
+
+    loadMood(week);
 }
+const moodSelect = document.getElementById("weekmood") as HTMLSelectElement;
+
+function loadMood(week: number) {
+    send("getmood", { userId: currentUserId, weeknum: week }).then((data: { mood: number }) => {
+        moodSelect.value = data.mood?.toString() ?? "0";
+    });
+}
+
+moodSelect.addEventListener("change", () => {
+    const mood = parseInt(moodSelect.value);
+    send("setmood", { UserId: currentUserId, weeknum: currentWeek, mood });
+});
 
 // Initial load
 loadWeek(currentWeek);
