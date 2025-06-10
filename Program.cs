@@ -57,13 +57,6 @@ class Program
 
             response.Send(userId);
           }
-
-          else if (request.Path == "logIn")
-          {
-            var (username, password) = request.GetBody<(string, string)>();
-            var user = database.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
-            response.Send(user?.Id);
-          }
           else if (request.Path == "getUsername")
           {
             string userId = request.GetBody<string>();
@@ -73,6 +66,13 @@ class Program
             var username = user?.Username;
 
             response.Send(username);
+          }
+
+          else if (request.Path == "logIn")
+          {
+            var (username, password) = request.GetBody<(string, string)>();
+            var user = database.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
+            response.Send(user?.Id);
           }
           else if (request.Path == "saveEntry")
           {

@@ -70,17 +70,14 @@ submitsignup.onclick = async () => {
 };
 
 submitlogin.onclick = async () => {
-    let success = await send("logIn", [
-        loginusername.value,
-        loginpassword.value,
-    ]) as boolean;
+    let userId = await send("logIn", [loginusername.value, loginpassword.value,]) as string | null;
 
-    if (!success) {
+    if (userId == null) {
         alert("Incorrect username or password");
         return;
     }
 
-    localStorage.setItem("userId", loginusername.value);
+    localStorage.setItem("userId", userId);
     location.href = "loahshana.html";
 }
 

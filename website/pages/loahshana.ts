@@ -2,9 +2,15 @@ import { send } from "../utilities";
 
 
 let currentUserId = localStorage.getItem("userId");
-if (!currentUserId) {
-    location.href = "index.html";
+let username = await send("getUsername", currentUserId) as string | null;
+if (!username) {
+    localStorage.removeItem("userId");
+    //location.href = "index.html";
+    alert(username);
 }
+
+const calendarTitle = document.getElementById("calendarTitle") as HTMLHeadingElement;
+calendarTitle.innerText = `${username}'s Calendar`;
 
 
 const weekSelect = document.getElementById("weekselect") as HTMLSelectElement;
