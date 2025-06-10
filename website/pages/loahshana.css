@@ -91,3 +91,9 @@ textarea:focus {
     top: 5%;
     cursor: pointer;
 }
+.mood-face {
+    color:black ;
+    text-align: center;
+    font-size: 50px;
+    margin-top: 0.5em;
+}

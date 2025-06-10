@@ -1,5 +1,17 @@
 import { send } from "../utilities";
 
+const moodFaceMap: Record<number, string> = {
+    1: "🤬 Very bad",
+    2: "😡 Bad",
+    3: "😐 Okay",
+    4: "😁 Good",
+    5: "😏 Very good"
+};
+
+
+const moodFace = document.getElementById("mood-face") as HTMLParagraphElement;
+
+
 
 let currentUserId = localStorage.getItem("userId");
 let username = await send("getUsername", currentUserId) as string | null;
@@ -66,14 +78,23 @@ const moodSelect = document.getElementById("weekmood") as HTMLSelectElement;
 
 function loadMood(week: number) {
     send("getmood", { userId: currentUserId, weeknum: week }).then((data: { mood: number }) => {
-        moodSelect.value = data.mood?.toString() ?? "0";
+        const mood = data.mood ?? 0;
+        moodSelect.value = mood.toString();
+        updateMoodFace(mood);
     });
 }
+function updateMoodFace(mood: number) {
+    moodFace.textContent = "Mood: " + (moodFaceMap[mood] ?? "—");
+}
+
+
 
 moodSelect.addEventListener("change", () => {
     const mood = parseInt(moodSelect.value);
     send("setmood", { UserId: currentUserId, weeknum: currentWeek, mood });
+    updateMoodFace(mood);
 });
+
 
 // Initial load
 loadWeek(currentWeek);
