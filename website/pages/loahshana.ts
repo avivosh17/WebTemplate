@@ -6,10 +6,6 @@ if (!currentUserId) {
     location.href = "index.html";
 }
 
-const calendarTitle = document.getElementById("calendarTitle") as HTMLHeadingElement;
-calendarTitle.innerText = `${currentUserId}'s Calendar`;
-
-
 
 const weekSelect = document.getElementById("weekselect") as HTMLSelectElement;
 const textareas = [

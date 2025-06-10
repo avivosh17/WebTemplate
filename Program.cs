@@ -34,6 +34,7 @@ class Program
       {
         try
         {
+
           if (request.Path == "verifyUserId")
           {
             var userId = request.GetBody<string>();
